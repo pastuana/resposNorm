@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .block{
+            width: 200px;
+            height: 200px;
+            background-color: #c0c0c0;
+            margin: 10px
+        }
+        .red{
+            background-color: red;
+        }
+        .blue{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="vue-app">
+        <!-- <h1> Hello Vue </h1>
+        <h2> Hello {{ name }} </h2>
+        <p> We are at: {{ checkBrowser }}</p>
+
+        <h1>Hi I'm <span @click="changeValue()">{{ value }}</span></h1>
+        <h2 v-if="value">I'm visible</h2>
+        <h1 v-else>Nope, I'm visible</h2>
+
+        <hr> -->
+        <!-- <div>
+            <div class="item" v-for="element of arr">
+                <h1>{{ element.title }}</h1>
+                <img src="http://placehold.it/250x200" alt="">
+                <hr>
+                <h2>{{ element.price }}</h2>
+                <p>{{ element.quantity }}</p>
+            </div>
+        </div> -->
+
+        <div class="block" @click="changeColor ()" v-bind:class="color"></div>
+        <div class="block" @click="changeColor ()" :class="color"></div>
+
+        <br>
+        <input type="text" v-model.lazy="someText">
+        <p>{{ someText }}</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        const app = new Vue ({
+            el: '#vue-app',
+            data: {
+                name: 'Qwert 123',
+                value: true,
+                arr: [{title: 'potato', price: 200, quantity: 2}, 
+                {title: 'tomato', price: 300, quantity: 1}, 
+                {title: 'cucumber', price: 400, quantity: 4}],
+                color: 'red',
+                someText: ''
+            }, //для хранения данных, используемых внутри данного компонента
+            computed: {
+                checkBrowser () {
+                    return window.XMLHttpRequest ? 'Chrome' : 'IE'
+                }
+
+            }, //набор функций для вычислений
+            methods: {
+                changeValue () {
+                    this.value = !this.value
+                },
+                changeColor () {
+                    this.color === 'red' ? this.color = 'blue' : this.color = 'red'
+                }
+            }, //методы
+            // mounted () {
+            //     console.log ('Я монтируюсь')
+            //     this.changeValue ()
+            // },
+            // created () {
+            //     console.log ('Я родился')
+            // },
+            // destroyed () {
+            //     console.log ('Ой, всё')
+            // }
+        })
+    </script>
+</body>
+</html>
